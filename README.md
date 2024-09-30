@@ -1,7 +1,2 @@
-Для установки пакетов
-
-poetry install
-
-Для запуска сервера
-
-uvicorn main:app --reload
+Для запуска приложения использовать команду:
+docker-compose up --build
