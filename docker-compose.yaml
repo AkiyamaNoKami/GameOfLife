@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    command: uvicorn app.main:app --reload --host localhost --port 80
+    volumes:
+      - .:/app/
+    ports:
+      - 8000:80
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://fastapi:fastapi@db:$5432/fastapi
+    depends_on:
+      - db
+    restart: always
+    env_file:
+      - .env
+
+  db:
+    image: postgres:17.0-alpine3.19
+    container_name: db
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=penguintmc
+    restart: always
+
+volumes:
+  data:
