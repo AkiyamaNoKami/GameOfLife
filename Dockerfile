@@ -1,3 +1,15 @@
+FROM node:20-alpine as build
+
+WORKDIR /app/frontend
+
+COPY frontend/package*.json ./
+
+RUN npm install
+
+COPY frontend ./
+
+RUN npm run build
+
 FROM python:3.12-alpine
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -13,6 +25,8 @@ RUN pip install poetry
 COPY pyproject.toml .
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-root --no-interaction --no-ansi
+
+COPY --from=build /app/frontend/dist /app/static
 
 EXPOSE 8000
 
