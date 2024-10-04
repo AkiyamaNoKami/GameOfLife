@@ -1,33 +1,37 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-    volumes:
-      - .:/app/
+
+  backend:
+    build: ./services/backend
     ports:
-      - 8080:8000
+      - 5000:5000
     environment:
-      - DATABASE_URL=postgresql+asyncpg://fastapi:fastapi@db:5432/fastapi
+      - DATABASE_URL=postgres://penguintmc:penguintmc@db:5432/penguintmc_dev
+    volumes:
+      - ./services/backend:/app
+    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 5000
     depends_on:
       - db
-    restart: always
-    env_file:
-      - .env
+
+  frontend:
+    build: ./services/frontend
+    volumes:
+      - './services/frontend:/app'
+      - '/app/node_modules'
+    ports:
+      - 8080:8080
 
   db:
-    image: postgres:17.0-alpine3.19
-    container_name: db
-    ports:
-      - 5432:5432
-    volumes:
-      - data:/var/lib/postgresql/data
+    image: postgres:15.1
+    expose:
+      - 5432
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=penguintmc
-    restart: always
+      - POSTGRES_USER=penguintmc
+      - POSTGRES_PASSWORD=penguintmc
+      - POSTGRES_DB=penguintmc_dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
 volumes:
-  data:
+  postgres_data:
