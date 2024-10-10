@@ -6,37 +6,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5000",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5000"],
+    allow_origins=["http://localhost:8080"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-#Route for html temp
-templates = Jinja2Templates(directory="templates")
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
 @app.get("/")
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-
-#Endpoints for get data
-@app.get("/api/data")
-def get_data():
-    data = {"message": "Hello from Penguin"}
-    return JSONResponse(content=data)
-
-#Endpoints for post data
-@app.post("/api/post-data")
-async def post_data(request: Request):
-    data = await request.json()
-    response = {"received-data": data, "message": "Data received ok"}
-    return JSONResponse(content=response)
+def home():
+    return "Hello world!"
