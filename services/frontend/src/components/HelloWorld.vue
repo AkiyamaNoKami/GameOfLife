@@ -1,32 +1,61 @@
 <template>
-  <div class="hello">
-    <p>{{ msg }}</p>
-  </div>
+  <v-container>
+
+  </v-container>
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
-  name: 'PingComponent',
-  data () {
-    return {
-      msg: '',
-    };
-  },
-  methods: {
-    getMessage () {
-      axios.get('/')
-      .then((res) => {
-        this.msg = res.data;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    },
-  },
-  created() {
-    this.getMessage();
-  },
-};
+  name: 'HelloWorld',
+
+  data: () => ({
+    ecosystem: [
+      {
+        text: 'vuetify-loader',
+        href: 'https://github.com/vuetifyjs/vuetify-loader/tree/next',
+      },
+      {
+        text: 'github',
+        href: 'https://github.com/vuetifyjs/vuetify/tree/next',
+      },
+      {
+        text: 'awesome-vuetify',
+        href: 'https://github.com/vuetifyjs/awesome-vuetify',
+      },
+    ],
+    importantLinks: [
+      {
+        text: 'Chat',
+        href: 'https://community.vuetifyjs.com',
+      },
+      {
+        text: 'Made with Vuetify',
+        href: 'https://madewithvuejs.com/vuetify',
+      },
+      {
+        text: 'Twitter',
+        href: 'https://twitter.com/vuetifyjs',
+      },
+      {
+        text: 'Articles',
+        href: 'https://medium.com/vuetify',
+      },
+    ],
+    whatsNext: [
+      {
+        text: 'Explore components',
+        href: 'https://vuetifyjs.com',
+      },
+      {
+        text: 'Roadmap',
+        href: 'https://vuetifyjs.com/introduction/roadmap/',
+      },
+      {
+        text: 'Frequently Asked Questions',
+        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+      },
+    ],
+  }),
+}
 </script>

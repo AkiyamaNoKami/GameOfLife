@@ -1,14 +1,44 @@
-import { createApp } from 'vue'
-import axios from "axios";
+// import { createApp } from 'vue'
+// import App from './App.vue'
+// import router from './router'
+// import vuetify from './plugins/vuetify'
+// import { loadFonts } from './plugins/webfontloader'
+//
+// loadFonts()
+//
+// createApp(App)
+//   .use(router)
+//   .use(vuetify)
+//   .mount('#app')
 
-import App from './App.vue'
-import router from './router'
+
+// import '@mdi/font/css/materialdesignicons.css'; // Для Material Design Icons
+// import 'vuetify/styles'; // Стили для Vuetify
+// import { createVuetify } from 'vuetify'; // Правильный импорт Vuetify
+//
+// const vuetify = createVuetify({
+//     icons: {
+//         iconfont: 'mdi', // Указываем использование Material Design Icons
+//     },
+// });
+//
+// export default vuetify;
 
 
-const app = createApp(App)
+import { createApp } from 'vue';
+import App from './App.vue';
+import vuetify from './plugins/vuetify'; // Убедитесь, что путь верный
+// import { createRouter, createWebHistory } from 'vue-router';
+// import routes from './router';
+import router from "./router"; // Проверьте правильный путь к вашему маршрутизатору
 
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:5000/';
+const app = createApp(App);
 
+app.use(vuetify);
 app.use(router);
+// app.use(createRouter({
+//     history: createWebHistory(),
+//     routes,
+// }));
+
 app.mount('#app');
