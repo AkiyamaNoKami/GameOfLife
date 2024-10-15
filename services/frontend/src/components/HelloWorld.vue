@@ -1,37 +1,21 @@
 <template>
-  <v-container>
-    <v-navigation-drawer permanent>
-      <v-toolbar>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title class="title">
-              Workspace
-            </v-list-item-title>
-          </v-list-item>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer
+          image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+          theme="dark"
+          permanent>
+        <v-list nav>
+          <v-list-item prepend-icon="mdi-home" title="Home" value="home"></v-list-item>
+          <v-list-item prepend-icon="mdi-bookshelf" title="Project" value="project"></v-list-item>
+          <v-list-item prepend-icon="mdi-abacus" title="Statistic" value="statistic"></v-list-item>
+          <v-list-item class="opacity-80 bg-blue-accent-4 text-white" prepend-icon="mdi-plus" title="Create new case" value="create-new-case"></v-list-item>
         </v-list>
-      </v-toolbar>
-
-      <v-divider></v-divider>
-
-      <v-list dense class="pt-0">
-        <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        @click="handleClick(item)"
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </v-container>
+      </v-navigation-drawer>
+      <v-main style="height: 600px"></v-main>
+    </v-layout>
+  </v-card>
 </template>
-
 <script>
 
 export default {
@@ -39,15 +23,11 @@ export default {
 
   data: () => ({
       items: [
-        { title: 'Home', icon: 'dashboard'},
-        { title: 'About', icon: 'question_answer'}
+        { title: 'Project', icon: 'dashboard'},
+        { title: 'Statistics', icon: 'question_answer'},
+        { title: 'Settings', icon: 'question_answer'}
       ],
       right: null
-  }),
-  methods: {
-    handleClick(item) {
-      console.log('Clicked od:', item.title);
-    },
-  },
+  })
 }
 </script>
