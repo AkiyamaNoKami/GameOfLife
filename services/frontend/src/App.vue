@@ -17,7 +17,7 @@
                 prepend-icon="mdi-home"
                 title="Home"
                 value="home"
-                @click="$router.push('/home')"
+                @click="$router.push({name: 'home'})"
             ></v-list-item>
             <v-list-item prepend-icon="mdi-bookshelf" title="Project" value="project"></v-list-item>
             <v-list-item prepend-icon="mdi-abacus" title="Statistic" value="statistic"></v-list-item>
@@ -26,7 +26,7 @@
                 prepend-icon="mdi-plus"
                 title="Create new case"
                 value="create-new-case"
-                @click="$router.push({name:'createNewCase'})"
+                @click="$router.push({name: 'createNewCase'})"
             ></v-list-item>
           </v-list>
         </v-navigation-drawer>
