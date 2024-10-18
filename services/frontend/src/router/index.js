@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CreateCaseView from '../components/CreateCaseView.vue'
+import CreateTaskView from '../components/CreateTaskView.vue'
 
 const routes = [
   {
@@ -14,9 +14,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/create-new-case',
-    name: 'createNewCase',
-    component: CreateCaseView
+    path: '/create-new-task',
+    name: 'createNewTask',
+    component: CreateTaskView
   }
 ]
 

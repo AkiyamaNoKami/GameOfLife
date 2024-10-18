@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: 'CreateCaseView',
+  name: 'CreateTaskView',
 
   data: () => ({
     valid: true,
