@@ -5,7 +5,7 @@
       <div class="font-weight-black ml-5">{{ appName }}</div>
       <v-btn
           @click="$router.push({name: 'createNewTask'})"
-          class="mr-15"
+          class="ml-5"
           color="primary"
           prepend-icon="mdi-plus">
         Create</v-btn>
@@ -18,30 +18,53 @@
             theme="dark"
             permanent>
           <v-list>
-            <v-list-group
-                v-for="item in items"
-                :key="item.title"
-                v-model="item.active"
-                :prepend-icon="item.action"
-                no-action>
-              <template v-slot:activator>
-                <v-list-item>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
+            <v-list-item
+                @click="goHome"
+                prepend-icon="mdi-home"
+                title="Home"
+            ></v-list-item>
+
+            <v-list-group value="Tasks">
+              <template v-slot:activator="{ props }">
+                <v-list-item
+                    v-bind="props"
+                    prepend-icon="mdi-checkbox-multiple-marked-outline"
+                    title="Tasks"
+                ></v-list-item>
               </template>
 
               <v-list-item
-                v-for="subItem in item.items"
-                :key="subItem.title">
-                <v-list-item-action>
-                  <v-icon>{{ subItem.action }}</v-icon>
-                </v-list-item-action>
-              </v-list-item>
+                  v-for="([title, icon], i) in tasks"
+                  :key="i"
+                  :prepend-icon="icon"
+                  :title="title"
+                  :value="title"
+                  style="padding-left: 30px !important"
+                  @click="navigateTo('/tasks/$(title.toLowerCase()')"
+              ></v-list-item>
+              </v-list-group>
+            <v-list-group value="Health">
+              <template v-slot:activator="{ props }">
+                <v-list-item
+                    v-bind="props"
+                    prepend-icon="mdi-heart-outline"
+                    title="Health"
+                ></v-list-item>
+              </template>
+
+              <v-list-item
+                  v-for="([title, icon], i) in health"
+                  :key="i"
+                  :prepend-icon="icon"
+                  :title="title"
+                  :value="title"
+                  style="padding-left: 30px !important"
+              ></v-list-item>
             </v-list-group>
           </v-list>
         </v-navigation-drawer>
 
-        <v-main class="зф-5" style="height: 600px">
+        <v-main style="height: 100vh">
         <router-view/>
         </v-main>
       </v-layout>
@@ -56,65 +79,32 @@ export default {
 
   data: () => ({
     appName: 'GameOfLife',
+
+    tasks: [
+      ['In progress', 'mdi-checkbox-multiple-blank-outline'],
+      ['Planning', 'mdi-calendar-blank-outline'],
+      ['Done', 'mdi-checkbox-marked-outline'],
+      ['Droped', 'mdi-checkbox-blank-off-outline'],
+    ],
+    health: [
+      ['Food', 'mdi-baguette'],
+      ['Sport', 'mdi-snowboard'],
+      ['Pils', 'mdi-pill'],
+      ['Emotions', 'mdi-sticker-emoji'],
+    ],
   }),
   methods: {
+    goHome() {
+      this.$router.push('/');
+    },
     refreshApp() {
       this.appName = 'Penguin TMC - Updated';
       console.log('App refresh')
+    },
+    navigateTo(path) {
+      this.$router.push(path);
     }
   },
-  items: [
-    {
-      action: 'local_activity',
-      title: 'Attractions',
-      items: [
-        { title: 'List Item'}
-      ]
-    },
-    {
-      action: 'restaurant',
-      title: 'Dining',
-      active: true,
-      items: [
-        { title: 'Breakfast' },
-        { title: 'Sushi' }
-      ]
-    },
-    {
-      action: 'school',
-      title: 'Education',
-      items: [
-        { title: 'List Item' }
-      ]
-    },
-    {
-      action: 'directions_run',
-      title: 'Family',
-      items: [
-        { title: 'List Item' }
-      ]
-    },
-    {
-      action: 'healing',
-      title: 'Health',
-      items: [
-        { title: 'List Item' }
-      ]
-    },
-    {
-      action: 'content_cut',
-      title: 'Office',
-      items: [
-        { title: 'List Item' }
-      ]
-    },
-    {
-      action: 'local_offer',
-      title: 'Promotions',
-      items: [
-        { title: 'List Item' }
-      ]
-    }
-  ]
+
 }
 </script>

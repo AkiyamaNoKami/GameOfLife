@@ -1,7 +1,4 @@
-version: '3.8'
-
 services:
-
   backend:
     build: ./services/backend
     ports:
@@ -21,6 +18,9 @@ services:
       - '/app/node_modules'
     ports:
       - 8080:8080
+    depends_on:
+      - backend
+
 
   db:
     image: postgres:15.1
