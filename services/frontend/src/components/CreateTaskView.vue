@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-flex>
-      <v-card-title>Создать новый тест-кейс</v-card-title>
+      <v-card-title>Создать новую задачу</v-card-title>
         <v-form
             ref="form"
             v-model="valid"
@@ -24,7 +24,7 @@
               v-model="select"
               :items="items"
               :rules="[v => !!v || 'Type is required']"
-              label="Bug type"
+              label="Category"
               required>
           </v-select>
           <v-btn
@@ -78,10 +78,8 @@ export default {
     ],
     select: null,
     items: [
-        'Critical',
-        'High',
-        'Medium',
-        'Low'
+        'Task',
+        'Health'
     ]
   }),
   methods: {

@@ -17,6 +17,11 @@ const routes = [
     path: '/create-new-task',
     name: 'createNewTask',
     component: CreateTaskView
+  },
+  {
+    path: '/food',
+    name: 'food',
+    component: () => import( '../views/FoodView.vue')
   }
 ]
 
