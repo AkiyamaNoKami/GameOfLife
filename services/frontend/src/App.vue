@@ -23,7 +23,6 @@
                 prepend-icon="mdi-home"
                 title="Home"
             ></v-list-item>
-
             <v-list-group value="Tasks">
               <template v-slot:activator="{ props }">
                 <v-list-item
@@ -40,7 +39,6 @@
                   :title="title"
                   :value="title"
                   style="padding-left: 30px !important"
-                  @click="navigateTo('/tasks/$(title.toLowerCase()')"
               ></v-list-item>
               </v-list-group>
             <v-list-group value="Health">
@@ -59,6 +57,7 @@
                   :title="title"
                   :value="title"
                   style="padding-left: 30px !important"
+                  @click="navigateTo(`/health/${title.toLowerCase()}`)"
               ></v-list-item>
             </v-list-group>
           </v-list>

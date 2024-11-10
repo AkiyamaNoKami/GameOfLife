@@ -3,5 +3,8 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (PenguinTMC)" />
   </component>
+  <component name="ExtraIDETweaksSettingsProject">
+    <option name="enableOpenEditorsShowRecentFiles" value="false" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Poetry (PenguinTMC)" project-jdk-type="Python SDK" />
 </project>

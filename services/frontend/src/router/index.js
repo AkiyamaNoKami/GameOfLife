@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreateTaskView from '../components/CreateTaskView.vue'
+import FoodView from "../components/FoodView.vue"
+import SportView from "../components/SportView.vue"
+import EmotionsView from "../components/EmotionsView.vue"
 
 const routes = [
   {
@@ -19,10 +22,20 @@ const routes = [
     component: CreateTaskView
   },
   {
-    path: '/food',
+    path: '/health/food',
     name: 'food',
-    component: () => import( '../views/FoodView.vue')
-  }
+    component: FoodView
+  },
+  {
+    path: '/health/sport',
+    name: 'sport',
+    component: SportView
+  },
+  {
+    path: '/health/emotions',
+    name: 'emotions',
+    component: EmotionsView
+  },
 ]
 
 const router = createRouter({
