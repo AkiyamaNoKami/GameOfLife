@@ -2,7 +2,7 @@ services:
   backend:
     build: ./services/backend
     ports:
-      - 5000:5000
+      - 5001:5000
     environment:
       - DATABASE_URL=postgres://gameoflife:gameoflife@db:5432/gameoflife_dev
     volumes:

@@ -85,9 +85,42 @@ export default {
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        this
+        this.submitForm()
       }
-    }
-  }
+    },
+    async submitForm() {
+      const formData = {
+        title: this.title,
+        description: this.description,
+        category: this.category,
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/tasks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+
+        if (response,ok) {
+          const result = await response.json()
+          console,log("Task created:", result)
+          this.resetForm()
+        } else {
+          console.error('Failed to create task')
+        }
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    },
+    resetForm() {
+      this.title = '',
+          this.description = '',
+          this.category = '',
+          this.$refs.form.reset()
+    },
+  },
 }
 </script>
