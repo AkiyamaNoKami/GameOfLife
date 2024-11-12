@@ -1,18 +1,17 @@
-FROM python:3.12-alpine
+FROM node:18-alpine
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
 
-RUN mkdir app
 WORKDIR /app
 
-RUN apk update && \
-    apk add --no-cache python3-dev
+COPY package*.json ./
 
-RUN pip install --upgrade pip
-RUN pip install poetry
-COPY pyproject.toml .
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-root --no-interaction --no-ansi
+RUN npm install
 
-COPY src/ .
+COPY ./src /app/src
+
+ENV NODE_ENV=production
+ENV DATABASE_URL=postgres://gameoflife:gameoflife@db:5432/gameoflife_dev
+
+CMD ["node", "run", "dev"]
+
+EXPOSE 3000

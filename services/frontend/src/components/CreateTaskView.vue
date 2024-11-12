@@ -104,9 +104,9 @@ export default {
           body: JSON.stringify(formData),
         })
 
-        if (response,ok) {
+        if (response.ok) {
           const result = await response.json()
-          console,log("Task created:", result)
+          console.log("Task created:", result)
           this.resetForm()
         } else {
           console.error('Failed to create task')
