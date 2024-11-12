@@ -21,7 +21,6 @@ services:
     depends_on:
       - backend
 
-
   mongo:
     image: mongo:latest
     expose:
@@ -30,6 +29,16 @@ services:
       - MONGO_INITDB_DATABASE=gameoflife
     volumes:
       - mongo_data:/data/db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
 
 volumes:
   mongo_data:

@@ -1,15 +1,28 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 import connectMongo from "./database/mongo";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+import taskRoutes from "./routes/task.routes";
 
-const dotenv = require('dotenv');
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors())
+
+app.use(express.json());
+
 connectMongo()
+
+app.use('/api', taskRoutes)
+
+app.use((err: any, req: Request, res: Response, next: any) => {
+    console.error(err.stack);
+    res.status(500).send({error: err.message || 'Internal Server Error'});
+})
 
 app.get('/', (req:Request, res:Response) => {
     res.send('Welcome to the backend!');
