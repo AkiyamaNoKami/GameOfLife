@@ -9,7 +9,7 @@ services:
       - './services/backend:/app'
     command: npm run start
     depends_on:
-      - db
+      - mongo
 
   frontend:
     build: ./services/frontend
@@ -22,7 +22,7 @@ services:
       - backend
 
 
-  db:
+  mongo:
     image: mongo:latest
     expose:
       - 27017
