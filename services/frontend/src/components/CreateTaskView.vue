@@ -8,7 +8,7 @@
             lazy-validation>
           <v-text-field
               width="300px"
-              v-model="model"
+              v-model="title"
               :counter="100"
               :rules="titleRules"
               label="Title"
@@ -16,14 +16,15 @@
           ></v-text-field>
           <v-text-field
               width="300px"
+              v-model="description"
               :counter="350"
               label="Description"
           ></v-text-field>
           <v-select
               width="300px"
-              v-model="select"
+              v-model="category"
               :items="items"
-              :rules="[v => !!v || 'Type is required']"
+              :rules="[v => !!v || 'Category is required']"
               label="Category"
               required>
           </v-select>
@@ -71,7 +72,9 @@ export default {
   data: () => ({
     valid: true,
     snackbar: false,
-    name: '',
+    title: '',
+    description: '',
+    category: null,
     titleRules: [
         v => !!v || 'Title is required',
         v => (v && v.length <= 10) || 'Title must be less than 10 characters',
@@ -96,7 +99,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:5000/api/tasks', {
+        const response = await fetch('http://localhost:3000/api/tasks', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -117,9 +120,9 @@ export default {
     },
     resetForm() {
       this.title = '',
-          this.description = '',
-          this.category = '',
-          this.$refs.form.reset()
+      this.description = '',
+      this.category = '',
+      this.$refs.form.reset()
     },
   },
 }

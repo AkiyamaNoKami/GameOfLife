@@ -9,7 +9,7 @@ services:
       - './services/backend:/app'
     command: npm run start
     depends_on:
-      - db
+      - mongo
 
   frontend:
     build: ./services/frontend
@@ -21,8 +21,7 @@ services:
     depends_on:
       - backend
 
-
-  db:
+  mongo:
     image: mongo:latest
     expose:
       - 27017
@@ -30,6 +29,16 @@ services:
       - MONGO_INITDB_DATABASE=gameoflife
     volumes:
       - mongo_data:/data/db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
 
 volumes:
   mongo_data:

@@ -39,6 +39,7 @@
                   :title="title"
                   :value="title"
                   style="padding-left: 30px !important"
+                  @click="navigateTo(`/tasks/${title.toLowerCase()}`)"
               ></v-list-item>
               </v-list-group>
             <v-list-group value="Health">
@@ -80,7 +81,7 @@ export default {
     appName: 'GameOfLife',
 
     tasks: [
-      ['In progress', 'mdi-checkbox-multiple-blank-outline'],
+      ['InProgress', 'mdi-checkbox-multiple-blank-outline'],
       ['Planning', 'mdi-calendar-blank-outline'],
       ['Done', 'mdi-checkbox-marked-outline'],
       ['Droped', 'mdi-checkbox-blank-off-outline'],
