@@ -4,6 +4,7 @@ import CreateTaskView from '../components/CreateTaskView.vue'
 import FoodView from "../components/FoodView.vue"
 import SportView from "../components/SportView.vue"
 import EmotionsView from "../components/EmotionsView.vue"
+import InProgressTaskView from "../components/InProgressTaskView.vue"
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/create-new-task',
     name: 'createNewTask',
     component: CreateTaskView
+  },
+  {
+    path: '/tasks/inprogress',
+    name: 'inProgressTask',
+    component: InProgressTaskView
   },
   {
     path: '/health/food',

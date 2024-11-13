@@ -26,4 +26,14 @@ router.post('/tasks', async (req: Request, res: Response): Promise<any> => {
     }
 });
 
+router.get('/tasks', async (req: Request, res: Response): Promise<any> => {
+    try {
+        const tasks = await Task.find();
+        res.status(200).json(tasks);
+    } catch (err) {
+        console.error('Error fetching tasks:', err);
+        res.status(500).json({error: 'Failed to fetch tasks'});
+    }
+})
+
 export default router;
