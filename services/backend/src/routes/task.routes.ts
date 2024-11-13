@@ -15,6 +15,7 @@ router.post('/tasks', async (req: Request, res: Response): Promise<any> => {
             title,
             description,
             category,
+            is_done: false,
         });
 
         await newTask.save();
@@ -33,6 +34,41 @@ router.get('/tasks', async (req: Request, res: Response): Promise<any> => {
     } catch (err) {
         console.error('Error fetching tasks:', err);
         res.status(500).json({error: 'Failed to fetch tasks'});
+    }
+})
+
+router.get('/tasks/inprogress', async (req: Request, res: Response): Promise<any> => {
+    try {
+        const tasks = await Task.find({ is_done: false });
+        res.status(200).json(tasks);
+    } catch (err) {
+        console.error('Error fetching in-progress tasks:', err);
+        res.status(500).json({ error: 'Failed to fetch in-progress tasks'});
+    }
+})
+
+router.get('/tasks/done', async (req: Request, res: Response): Promise<any> => {
+    try {
+        const tasks = await Task.find({ is_done: true });
+        res.status(200).json(tasks);
+    } catch (err) {
+        console.error('Error fetching done tasks:', err);
+        res.status(500).json({ error: 'Failed to fetch done tasks'});
+    }
+})
+
+router.patch('/tasks/:id/mark-done', async (req: Request, res: Response): Promise<any> => {
+    try {
+        const { id } = req.params;
+        const task = await Task.findByIdAndUpdate(id, { is_done: true }, { new: true });
+        if (task) {
+            res.status(200).json(task);
+        } else {
+            res.status(404).json({message: 'Task not found'});
+        }
+    } catch (err) {
+        console.error('Error making task at done:', err);
+        res.status(500).json({ error: 'Failed to mark task at done' });
     }
 })
 

@@ -11,6 +11,8 @@ const TaskSchema: Schema = new Schema({
     title: {'type': String, required: true, maxlength: 100},
     description: {'type': String, required: true, maxlength: 350},
     category: {'type': String, required: true},
+    is_done: {'type': Boolean, default: false},
+    is_droped: {'type': Boolean, default: false},
 })
 
 export default mongoose.model<ITask>('Task', TaskSchema);
