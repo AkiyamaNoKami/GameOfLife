@@ -48,13 +48,13 @@ export default {
 </script>
 
 <style scoped>
-  .done_task_btn {
-    margin-top: 20px;
-    margin-left: 20px;
-    cursor: pointer;
-  }
+.done_task_btn {
+  margin-top: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
 
-  .done_task_btn:hover {
-    background-color: lightseagreen !important;
-  }
+.done_task_btn:hover {
+  background-color: lightseagreen !important;
+}
 </style>
