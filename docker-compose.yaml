@@ -40,5 +40,17 @@ services:
       - backend
       - frontend
 
+  migrate:
+    image: node:latest
+    volumes:
+      - ./services/backend:/app
+    working_dir: /app
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/gameoflife
+      - MONGO_INITDB_DATABASE=gameoflife
+    depends_on:
+      - mongo
+    command: npx migrate-mongo up
+
 volumes:
   mongo_data:
