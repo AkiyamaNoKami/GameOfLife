@@ -61,6 +61,25 @@
                   @click="navigateTo(`/health/${title.toLowerCase()}`)"
               ></v-list-item>
             </v-list-group>
+            <v-list-group value="Study">
+              <template v-slot:activator="{ props }">
+                <v-list-item
+                    v-bind="props"
+                    prepend-icon="mdi-rocket-outline"
+                    title="Study"
+                ></v-list-item>
+              </template>
+
+              <v-list-item
+                  v-for="([title, icon], i) in study"
+                  :key="i"
+                  :prepend-icon="icon"
+                  :title="title"
+                  :value="title"
+                  style="padding-left: 30px !important"
+                  @click="navigateTo(`/study/${title.toLowerCase()}`)"
+              ></v-list-item>
+            </v-list-group>
           </v-list>
         </v-navigation-drawer>
 
@@ -92,13 +111,17 @@ export default {
       ['Pils', 'mdi-pill'],
       ['Emotions', 'mdi-sticker-emoji'],
     ],
+
+    study: [
+      ['Learning', 'mdi-rocket-launch-outline'],
+    ]
   }),
   methods: {
     goHome() {
       this.$router.push('/');
     },
     refreshApp() {
-      this.appName = 'Penguin TMC - Updated';
+      this.appName = 'GameOfLife';
       console.log('App refresh')
     },
     navigateTo(path) {
