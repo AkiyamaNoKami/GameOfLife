@@ -5,6 +5,8 @@ import FoodView from "../components/FoodView.vue"
 import SportView from "../components/SportView.vue"
 import EmotionsView from "../components/EmotionsView.vue"
 import InProgressTaskView from "../components/InProgressTaskView.vue"
+import LearningView from "@/components/LearningView.vue";
+
 
 const routes = [
   {
@@ -42,6 +44,11 @@ const routes = [
     name: 'emotions',
     component: EmotionsView
   },
+  {
+    path: '/study/learning',
+    name: 'learning',
+    component: LearningView
+  }
 ]
 
 const router = createRouter({
